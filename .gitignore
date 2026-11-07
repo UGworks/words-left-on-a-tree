@@ -27,3 +27,6 @@ __pycache__/
 
 # 다른 작업의 테스트 폴더
 지은박사_TEST/
+
+# GPT·배포 업로드용 묶음 (git archive로 다시 만들 수 있음)
+/deploy/
