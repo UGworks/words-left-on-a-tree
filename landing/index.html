@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>말을 걸어 두는 나무 — 이성훈</title>
+<meta name="description" content="지나가던 사람들이 잠시 멈춰 말을 걸어 두고 가는 나무. 예술공학 이성훈의 인터랙티브 미디어아트.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{--bg:#0a0b0a;--ink:#e6e3d8;--mute:#8a877c;--line:#2a2d28;--leaf:#a4e0a0;--gold:#f6d696;
+    --sans:"Inter","Pretendard",-apple-system,system-ui,sans-serif;--serif:"Nanum Myeongjo","AppleMyungjo",serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow:hidden}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--leaf);outline-offset:3px;border-radius:4px}
+  #tree{position:fixed;inset:0;width:100%;height:100%;display:block}
+
+  .nav{position:fixed;top:0;left:0;right:0;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:28px clamp(18px,3vw,44px);font-size:13.5px}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;letter-spacing:-.01em;text-decoration:none}
+  .nav nav{display:flex;gap:clamp(16px,2.4vw,32px);align-items:center}
+  .nav nav a{color:#b9b6ab;text-decoration:none;transition:color .2s}
+  .nav nav a:hover{color:#fff}
+  .nav .pill{background:var(--ink);color:#0a0b0a;padding:9px 18px;border-radius:999px;font-weight:500}
+  .nav .pill:hover{color:#0a0b0a;background:#fff}
+
+  .copy{position:fixed;left:0;right:0;bottom:clamp(96px,14vh,150px);z-index:3;text-align:center;padding:0 20px;pointer-events:none}
+  .copy > *{opacity:0;transform:translateY(10px);transition:opacity 1.2s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  body.settled .copy > *{opacity:1;transform:none;pointer-events:auto}
+  body.settled .copy > :nth-child(2){transition-delay:.25s}
+  body.settled .copy > :nth-child(3){transition-delay:.5s}
+  body.settled .copy > :nth-child(4){transition-delay:.75s}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+  .copy h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.2vw,64px);letter-spacing:-.02em;line-height:1.15;margin-top:12px;text-shadow:0 2px 24px #0a0b0a}
+  .copy h1 .en{display:block;font-family:var(--mono);font-size:clamp(11px,.9vw,13px);letter-spacing:.42em;color:var(--mute);margin-top:12px;text-transform:uppercase}
+  .copy p{margin:16px auto 0;max-width:420px;color:#b9b6ab;font-size:clamp(14px,1.05vw,16px);line-height:1.6;text-shadow:0 1px 16px #0a0b0a}
+  .acts{display:flex;justify-content:center;gap:10px;margin-top:26px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid #4a4d47;border-radius:999px;padding:11px 20px;font-size:14px;font-weight:500;text-decoration:none;background:rgba(10,11,10,.5);backdrop-filter:blur(6px);transition:background .2s,border-color .2s,transform .25s}
+  .btn:hover{border-color:var(--ink);transform:translateY(-1px)}
+  .btn.solid{background:var(--ink);color:#0a0b0a;border-color:var(--ink)}
+  .btn.solid:hover{background:#fff}
+
+  .hang{position:fixed;left:50%;bottom:clamp(24px,4.5vh,44px);transform:translateX(-50%);z-index:3;display:flex;gap:8px;width:min(92vw,460px);opacity:0;transition:opacity 1.2s ease 1s}
+  body.settled .hang{opacity:1}
+  .hang input{flex:1;min-width:0;background:rgba(10,11,10,.6);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:11px 18px;font:inherit;font-size:14px;backdrop-filter:blur(6px)}
+  .hang input::placeholder{color:#6f6c63}
+  .hang input:focus{border-color:#5b5e57;outline:none}
+  .hang button{background:transparent;border:1px solid var(--line);color:var(--leaf);border-radius:999px;padding:0 18px;font:inherit;font-size:14px;cursor:pointer}
+  .hang button:hover{border-color:var(--leaf)}
+  .note{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);z-index:3;font-size:11px;color:#5e5b53;white-space:nowrap;opacity:0;transition:opacity 1.2s ease 1.3s}
+  body.settled .note{opacity:1}
+
+  .skip{position:fixed;right:clamp(18px,3vw,44px);bottom:clamp(18px,3vh,32px);z-index:4;background:transparent;border:1px solid var(--line);color:var(--mute);border-radius:999px;padding:8px 14px;font:inherit;font-size:12.5px;cursor:pointer;transition:opacity .6s,color .2s}
+  .skip:hover{color:var(--ink)}
+  body.settled .skip{opacity:0;pointer-events:none}
+
+  @media (max-width:640px){
+    .nav nav a:not(.pill){display:none}
+    .copy{bottom:120px}
+    .note{display:none}
+  }
+  @media (prefers-reduced-motion: reduce){ .copy > *,.hang,.note{transition:none} }
+</style>
+</head>
+<body>
+  <canvas id="tree" aria-label="버드나무처럼 가지가 늘어진 나무에 사람들이 남긴 문장이 세로로 매달려 흔들리는 3D 장면. 처음에는 줄기 가까이에서 시작해 나무를 돌며 멀어진다."></canvas>
+
+  <header class="nav">
+    <a class="brand" href="./" aria-label="이성훈">
+      <svg width="16" height="18" viewBox="0 0 16 18" aria-hidden="true"><path fill="currentColor" d="M0 1h16v1.8H0zM2.6 2.8h1.5v9.6H2.6zM7.25 2.8h1.5V18h-1.5zM11.9 2.8h1.5v6.6h-1.5z"/></svg>
+      이성훈
+    </a>
+    <nav aria-label="주 메뉴">
+      <a href="../site/">작업 소개</a>
+      <a href="../site/#artist">작가</a>
+      <a class="pill" href="../가시나무에_매달린_말들/index.html" target="_blank" rel="noopener">작품 실행</a>
+    </nav>
+  </header>
+
+  <section class="copy" id="copy">
+    <p class="eyebrow">Interactive Media Art · 2026</p>
+    <h1>말을 걸어 두는 나무<span class="en">Words Left on a Tree</span></h1>
+    <p>지나가던 사람들이 잠시 멈춰 말을 걸어 두고 가는 나무. 모르는 사람의 말 옆에 내 말이 걸리면, 다음에 온 사람은 둘을 나란히 읽게 된다.</p>
+    <div class="acts">
+      <a class="btn solid" href="../가시나무에_매달린_말들/index.html" target="_blank" rel="noopener">작품 실행하기 ↗</a>
+      <a class="btn" href="../site/">작업 소개 보기</a>
+    </div>
+  </section>
+
+  <form class="hang" id="hang" autocomplete="off">
+    <label class="sr" for="hangIn" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">나무에 걸어 둘 말</label>
+    <input id="hangIn" maxlength="40" placeholder="이 나무에 한마디 걸어 두기">
+    <button type="submit">걸기</button>
+  </form>
+  <p class="note">적은 말은 이 화면에서만 걸리고 어디에도 저장되지 않아요.</p>
+
+  <button class="skip" id="skip" type="button">건너뛰기</button>
+
+  <script src="sim.js"></script>
+  <script src="tree3d.js"></script>
+  <script>
+    document.getElementById('hang').addEventListener('submit', e => {
+      e.preventDefault(); const i = document.getElementById('hangIn');
+      if (hangWord(i.value)) i.value = '';
+    });
+  </script>
+</body>
+</html>
