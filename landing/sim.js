@@ -269,12 +269,4 @@ function simStep(dt){
   WIND.gustT=(WIND.gustT??9)+dt; WIND.gust=Math.max(0,Math.sin(Math.min(1,WIND.gustT/5)*Math.PI))*.9;
   stepTree(dt,S.t); stepRopes(dt,S.t); stepBirds(dt);
 }
-// 랜딩에서 한마디 걸기: 빈 가지에 한 글자씩 내려옴
-function hangWord(text){
-  text=(text||'').trim(); if(!text) return null;
-  const live=ropes.filter(r=>r.state==='hang');
-  if(live.length>=visibleTarget()){ const r=live.sort((a,b)=>a.born-b.born)[0]; r.state='falling'; }
-  const node=freeTip([...text].length); if(node===undefined) return null;
-  const r=makeRope(text,node,{layer:0}); S.lastNew=r; kick(node,.7); return r;
-}
 grow(.5); stepTree(0,0);

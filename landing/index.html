@@ -29,7 +29,7 @@
   .nav .pill{background:var(--ink);color:#0a0b0a;padding:9px 18px;border-radius:999px;font-weight:500}
   .nav .pill:hover{color:#0a0b0a;background:#fff}
 
-  .copy{position:fixed;left:0;right:0;bottom:clamp(96px,14vh,150px);z-index:3;text-align:center;padding:0 20px;pointer-events:none}
+  .copy{position:fixed;left:0;right:0;bottom:clamp(56px,10vh,110px);z-index:3;text-align:center;padding:0 20px;pointer-events:none}
   .copy > *{opacity:0;transform:translateY(10px);transition:opacity 1.2s ease,transform 1.2s cubic-bezier(.2,.7,.2,1)}
   body.settled .copy > *{opacity:1;transform:none;pointer-events:auto}
   body.settled .copy > :nth-child(2){transition-delay:.25s}
@@ -45,15 +45,6 @@
   .btn.solid{background:var(--ink);color:#0a0b0a;border-color:var(--ink)}
   .btn.solid:hover{background:#fff}
 
-  .hang{position:fixed;left:50%;bottom:clamp(24px,4.5vh,44px);transform:translateX(-50%);z-index:3;display:flex;gap:8px;width:min(92vw,460px);opacity:0;transition:opacity 1.2s ease 1s}
-  body.settled .hang{opacity:1}
-  .hang input{flex:1;min-width:0;background:rgba(10,11,10,.6);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:11px 18px;font:inherit;font-size:14px;backdrop-filter:blur(6px)}
-  .hang input::placeholder{color:#6f6c63}
-  .hang input:focus{border-color:#5b5e57;outline:none}
-  .hang button{background:transparent;border:1px solid var(--line);color:var(--leaf);border-radius:999px;padding:0 18px;font:inherit;font-size:14px;cursor:pointer}
-  .hang button:hover{border-color:var(--leaf)}
-  .note{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);z-index:3;font-size:11px;color:#5e5b53;white-space:nowrap;opacity:0;transition:opacity 1.2s ease 1.3s}
-  body.settled .note{opacity:1}
 
   .corner{position:fixed;right:clamp(18px,3vw,44px);bottom:clamp(18px,3vh,32px);z-index:4;display:flex;gap:8px}
   .corner button{background:rgba(10,11,10,.4);border:1px solid var(--line);color:var(--mute);border-radius:999px;padding:8px 14px;font:inherit;font-size:12.5px;cursor:pointer;transition:opacity .6s,color .2s;backdrop-filter:blur(4px)}
@@ -64,10 +55,9 @@
 
   @media (max-width:640px){
     .nav nav a:not(.pill){display:none}
-    .copy{bottom:120px}
-    .note{display:none}
+    .copy{bottom:72px}
   }
-  @media (prefers-reduced-motion: reduce){ .copy > *,.hang,.note{transition:none} }
+  @media (prefers-reduced-motion: reduce){ .copy > *{transition:none} }
 </style>
 </head>
 <body>
@@ -95,13 +85,6 @@
     </div>
   </section>
 
-  <form class="hang" id="hang" autocomplete="off">
-    <label class="sr" for="hangIn" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">나무에 걸어 둘 말</label>
-    <input id="hangIn" maxlength="40" placeholder="하고 싶었던 말 한마디">
-    <button type="submit">걸기</button>
-  </form>
-  <p class="note">창을 닫으면 걸어 둔 말도 흩어진다.</p>
-
   <div class="corner">
     <button class="skip" id="skip" type="button">건너뛰기</button>
     <button id="fs" type="button" aria-label="전체화면 (F)">전체화면</button>
@@ -115,16 +98,12 @@
     const toggleFs = () => { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen?.().catch(() => {}); };
     fsBtn.addEventListener('click', toggleFs);
     document.addEventListener('fullscreenchange', () => { fsBtn.textContent = document.fullscreenElement ? '창으로' : '전체화면'; });
-    addEventListener('keydown', e => { if ((e.key === 'f' || e.key === 'F') && document.activeElement?.tagName !== 'INPUT') toggleFs(); });
+    addEventListener('keydown', e => { if (e.key === 'f' || e.key === 'F') toggleFs(); });
     if (!document.documentElement.requestFullscreen) fsBtn.hidden = true;
     // 이름·프로필을 누르면 페이지를 다시 불러오지 않고 오프닝 첫 장면부터 다시
     document.querySelector('.brand').addEventListener('click', e => {
       if (!window.__landing?.restart || e.metaKey || e.ctrlKey || e.shiftKey) return;
       e.preventDefault(); document.activeElement?.blur(); window.__landing.restart();
-    });
-    document.getElementById('hang').addEventListener('submit', e => {
-      e.preventDefault(); const i = document.getElementById('hangIn');
-      if (hangWord(i.value)) i.value = '';
     });
   </script>
 </body>
