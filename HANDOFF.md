@@ -60,7 +60,7 @@ python3 -m http.server 8790 --bind 127.0.0.1
 
 ## 5. 배포 (URL로 공유하기)
 
-정적 파일뿐이라 정적 호스팅이면 충분하다. 추천은 **GitHub Pages**(무료, HTTPS, 나중에 GitHub를 연결할 계획과 맞음).
+정적 파일뿐이라 정적 호스팅이면 충분하다. 다만 **검색·수집을 막기로 했으므로**(각 페이지 `noindex` meta, 루트 `robots.txt`, 루트 `_headers`의 `X-Robots-Tag`) 헤더와 루트 robots.txt가 먹히는 **Netlify나 Cloudflare Pages**로 링크를 만든다. GitHub Pages 프로젝트 사이트는 `_headers`를 무시하고 하위 경로의 robots.txt도 읽지 않는다. 아래 GitHub Pages 절차는 참고용으로 남겨 둔다.
 
 1. GitHub에 저장소를 만들고 이 폴더를 push
 2. 저장소 Settings → Pages → Branch: `main` / 폴더: `/ (root)`

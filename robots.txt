@@ -1,0 +1,19 @@
+# 검색·수집 거부: 이 사이트의 어떤 페이지도 색인하거나 수집하지 마세요.
+User-agent: *
+Disallow: /
+
+# AI 학습·수집 크롤러 (위 규칙과 같지만 이름을 밝혀 둠)
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: CCBot
+User-agent: PerplexityBot
+User-agent: Bytespider
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+User-agent: Amazonbot
+Disallow: /
