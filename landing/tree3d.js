@@ -223,7 +223,7 @@
   const GC = new Map(), GS = 72;
   function glyphImg(c, rgb) {
     const k = c + '|' + rgb; let g = GC.get(k);
-    if (!g) { g = document.createElement('canvas'); g.width = g.height = GS; const x = g.getContext('2d'); x.font = `${GS * .78}px "Nanum Myeongjo", "AppleMyungjo", serif`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillStyle = `rgb(${rgb})`; x.fillText(c, GS / 2, GS / 2); GC.set(k, g); }
+    if (!g) { g = document.createElement('canvas'); g.width = g.height = GS; const x = g.getContext('2d'); x.font = `${GS * .78}px "Noto Serif KR", "AppleMyungjo", serif`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillStyle = `rgb(${rgb})`; x.fillText(c, GS / 2, GS / 2); GC.set(k, g); }
     return g;
   }
   function words(alpha) {
@@ -289,7 +289,7 @@
   window.__landing = { seek: t => { clock = t; }, renderAt: t => { clock = t; draw(1 / 60); } };   // 점검용
   resize();
   // 웹폰트는 최대 1.2초만 기다림 (늦게 오면 글자 캐시를 비워 다시 그림)
-  const fontsReady = Promise.all(['40px "Nanum Myeongjo"', '16px "IBM Plex Mono"'].map(f => document.fonts.load(f, '말 걸다 -|/').catch(() => {})));
+  const fontsReady = Promise.all(['40px "Noto Serif KR"', '16px "IBM Plex Mono"'].map(f => document.fonts.load(f, '말 걸다 -|/').catch(() => {})));
   fontsReady.then(() => GC.clear());
   Promise.race([fontsReady, new Promise(r => setTimeout(r, 1200))])
     .finally(() => { seedRopes(); ready = true; requestAnimationFrame(frame); });

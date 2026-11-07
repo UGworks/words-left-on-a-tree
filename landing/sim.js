@@ -7,7 +7,7 @@
 const sel={set:'guest', font:'myeongjo', text:'vertical', color:'ivory', hl:'spread', winter:'on', amount:'24'};   // 랜딩은 가볍게: 걸린 말 24개 (작품은 50개)
 const S={t:0, lastNew:null, hl:{rope:null,a:0,target:0}, focusA:0};
 const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const FONTS={ pen:'"Nanum Pen Script"', myeongjo:'"Nanum Myeongjo"', batang:'"Gowun Batang"' };
+const FONTS={ pen:'"Nanum Pen Script"', myeongjo:'"Noto Serif KR"', batang:'"Gowun Batang"' };
 const FONT_SCALE={ pen:1.32, myeongjo:1, batang:1 };
 const CH={ctx:null};                       // 작품의 효과음 자리 (랜딩에서는 소리 없음)
 const chimeLetter=()=>{};
