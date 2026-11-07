@@ -16,9 +16,10 @@
   html,body{height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow:hidden}
   a{color:inherit}
   :focus-visible{outline:2px solid var(--leaf);outline-offset:3px;border-radius:4px}
-  #tree{position:fixed;inset:0;width:100%;height:100%;display:block}
+  #tree{position:fixed;left:0;top:0;width:100vw;height:100vh;height:100dvh;display:block}
 
-  .nav{position:fixed;top:0;left:0;right:0;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:28px clamp(18px,3vw,44px);font-size:13.5px}
+  .nav{position:fixed;top:0;left:0;right:0;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:28px clamp(18px,3vw,44px);font-size:13.5px;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity 1.2s ease .4s,transform 1.2s ease .4s}
+  body.settled .nav{opacity:1;transform:none;pointer-events:auto}
   .brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;letter-spacing:-.01em;text-decoration:none}
   .nav nav{display:flex;gap:clamp(16px,2.4vw,32px);align-items:center}
   .nav nav a{color:#b9b6ab;text-decoration:none;transition:color .2s}
@@ -52,9 +53,12 @@
   .note{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);z-index:3;font-size:11px;color:#5e5b53;white-space:nowrap;opacity:0;transition:opacity 1.2s ease 1.3s}
   body.settled .note{opacity:1}
 
-  .skip{position:fixed;right:clamp(18px,3vw,44px);bottom:clamp(18px,3vh,32px);z-index:4;background:transparent;border:1px solid var(--line);color:var(--mute);border-radius:999px;padding:8px 14px;font:inherit;font-size:12.5px;cursor:pointer;transition:opacity .6s,color .2s}
-  .skip:hover{color:var(--ink)}
-  body.settled .skip{opacity:0;pointer-events:none}
+  .corner{position:fixed;right:clamp(18px,3vw,44px);bottom:clamp(18px,3vh,32px);z-index:4;display:flex;gap:8px}
+  .corner button{background:rgba(10,11,10,.4);border:1px solid var(--line);color:var(--mute);border-radius:999px;padding:8px 14px;font:inherit;font-size:12.5px;cursor:pointer;transition:opacity .6s,color .2s;backdrop-filter:blur(4px)}
+  .corner button:hover{color:var(--ink)}
+  body.settled .skip{opacity:0;pointer-events:none;width:0;padding:0;border:0;overflow:hidden}
+  body.settled .corner{bottom:auto;top:78px}
+  @media (max-width:640px){ body.settled .corner{display:none} }
 
   @media (max-width:640px){
     .nav nav a:not(.pill){display:none}
@@ -96,11 +100,21 @@
   </form>
   <p class="note">적은 말은 이 화면에서만 걸리고 어디에도 저장되지 않아요.</p>
 
-  <button class="skip" id="skip" type="button">건너뛰기</button>
+  <div class="corner">
+    <button class="skip" id="skip" type="button">건너뛰기</button>
+    <button id="fs" type="button" aria-label="전체화면 (F)">전체화면</button>
+  </div>
 
   <script src="sim.js"></script>
   <script src="tree3d.js"></script>
   <script>
+    // 전체화면: 버튼이나 F 키 (브라우저는 클릭 없이 자동으로 켜는 걸 막음)
+    const fsBtn = document.getElementById('fs');
+    const toggleFs = () => { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen?.().catch(() => {}); };
+    fsBtn.addEventListener('click', toggleFs);
+    document.addEventListener('fullscreenchange', () => { fsBtn.textContent = document.fullscreenElement ? '창으로' : '전체화면'; });
+    addEventListener('keydown', e => { if ((e.key === 'f' || e.key === 'F') && document.activeElement?.tagName !== 'INPUT') toggleFs(); });
+    if (!document.documentElement.requestFullscreen) fsBtn.hidden = true;
     document.getElementById('hang').addEventListener('submit', e => {
       e.preventDefault(); const i = document.getElementById('hangIn');
       if (hangWord(i.value)) i.value = '';

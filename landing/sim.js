@@ -4,7 +4,7 @@
  * 맨 위의 몇 줄과 맨 아래 simStep()만 랜딩용으로 새로 쓴 부분이다. */
 'use strict';
 // ---- 랜딩용: 작품 코드가 기대하는 설정값 (작품의 기본 결정값과 같음)
-const sel={set:'guest', font:'myeongjo', text:'vertical', color:'ivory', hl:'spread', winter:'on', amount:'0'};
+const sel={set:'guest', font:'myeongjo', text:'vertical', color:'ivory', hl:'spread', winter:'on', amount:'24'};   // 랜딩은 가볍게: 걸린 말 24개 (작품은 50개)
 const S={t:0, lastNew:null, hl:{rope:null,a:0,target:0}, focusA:0};
 const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FONTS={ pen:'"Nanum Pen Script"', myeongjo:'"Nanum Myeongjo"', batang:'"Gowun Batang"' };
@@ -251,7 +251,7 @@ function seedRopes(){
 }
 
 // ================================================================ 랜딩용: 한 프레임 진행
-let birds=[...Array(16)].map(()=>newBird(Math.random()*WW, 110+Math.random()*240, 1));
+let birds=[...Array(10)].map(()=>newBird(Math.random()*WW, 110+Math.random()*240, 1));
 function stepBirds(dt){
   for(let i=0;i<birds.length;i++){ const b=birds[i];
     b.ang+=dt*(.05+.02*(i%4));

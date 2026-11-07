@@ -44,14 +44,15 @@
   // ------------------------------------------------ 화면·카메라
   let W = 0, H = 0, DPR = 1, FP = 1, DF = 4000, TYF = TREE_YC, C, Rv, Uv, Fv;
   let cw = 8, chh = 14, cols = 0, rows = 0, LW = 0, LH = 0, seeds = null;
-  const SS = 4;
+  const SS = 3;                                   // 아스키 칸당 밝기 표본 3×3
+  const QUAL = { caps: [1.5, 1.25, 1], level: 0, acc: 0, n: 0 };   // 느리면 해상도를 한 단계씩 낮춤
   function resize() {
-    DPR = Math.min(2, window.devicePixelRatio || 1);
+    DPR = Math.min(QUAL.caps[QUAL.level], window.devicePixelRatio || 1);
     W = Math.round(cv.clientWidth * DPR); H = Math.round(cv.clientHeight * DPR); cv.width = W; cv.height = H;
     FP = H / (2 * Math.tan(16 * Math.PI / 180));
     DF = Math.min(FP * TREE_W / (.82 * W), FP * TREE_H / (.34 * H));  // 가로로 다 들어오게 (원근으로 앞 가지가 커지는 만큼 여유), 세로 화면에선 높이 기준
     TYF = TREE_YC - .2 * DF * H / FP;                                    // 나무를 화면 위쪽으로, 아래는 글 자리
-    cw = Math.max(6, W / 240); chh = cw * 1.8;
+    cw = Math.max(7, W / 200); chh = cw * 1.8;
     cols = Math.ceil(W / cw); rows = Math.ceil(H / chh);
     LW = cols * SS; LH = rows * SS; lum.width = acc.width = LW; lum.height = acc.height = LH;
     seeds = new Float32Array(cols * rows);
@@ -98,38 +99,39 @@
     const M = TRUNK.length, f = Math.min(M - 1e-4, Math.max(0, u * M)), j = Math.floor(f), s = f - j, n = N[TRUNK[j]], q = 1 - s;
     return [q * q * n.x0 + 2 * s * q * n.cx + s * s * n.x1, q * q * n.y0 + 2 * s * q * n.cy + s * s * n.y1];
   }
-  const SNOW = [...Array(260)].map(() => ({ x: Math.random(), y: Math.random(), z: (Math.random() - .5) * 3000, v: .012 + Math.random() * .02, s: Math.random() }));
+  const SNOW = [...Array(120)].map(() => ({ x: Math.random(), y: Math.random(), z: (Math.random() - .5) * 3000, v: .012 + Math.random() * .02, s: Math.random() }));
   function collect(t, dt) {
     SG = []; DT = [];
     for (let i = 0; i < N.length; i++) {   // 가지: 2차 곡선
       const n = N[i]; if (n.kind === 'trunk') continue;
       const z0 = n.p < 0 ? 0 : Z[n.p], z1 = Z[i], zc = (z0 + z1) / 2, pts = [];
-      for (let k = 0; k <= 3; k++) { const s = k / 3, q = 1 - s; pts.push(P3(q * q * n.x0 + 2 * q * s * n.cx + s * s * n.x1, q * q * n.y0 + 2 * q * s * n.cy + s * s * n.y1, q * q * z0 + 2 * q * s * zc + s * s * z1)); }
+      const K = n.kind === 'whip' ? 2 : 3;
+      for (let k = 0; k <= K; k++) { const s = k / K, q = 1 - s; pts.push(P3(q * q * n.x0 + 2 * q * s * n.cx + s * s * n.x1, q * q * n.y0 + 2 * q * s * n.cy + s * s * n.y1, q * q * z0 + 2 * q * s * zc + s * s * z1)); }
       line(pts, n.kind === 'whip' ? .34 : .5, n.kind === 'whip' ? 1.5 : 2.1);
     }
-    for (const g of LINEAGE) {             // 계보선 다발
-      const ch = g.chain, pts = [P3(N[ch[0]].x0 + g.off * 70, N[ch[0]].y0, 0)];
+    for (let li = 0; li < LINEAGE.length; li += 3) {   // 계보선 다발: 3분의 1만 (가볍게, 기둥이 덜 빽빽하게)
+      const g = LINEAGE[li], ch = g.chain, pts = [P3(N[ch[0]].x0 + g.off * 70, N[ch[0]].y0, 0)];
       for (let j = 0; j < ch.length; j++) {
         const n = N[ch[j]], tr = n.kind === 'trunk', wdt = tr ? 120 - j * 9 : 7 + 30 * Math.exp(-(n.ft - 1) / 5);
         const sp = tr ? .5 * wdt * Math.sin(g.off * Math.PI * 2 + j * .62) : g.off * wdt;
         pts.push(P3(n.x1 - Math.sin(n.ang) * sp, n.y1 + Math.cos(n.ang) * sp, Z[ch[j]] + (tr ? Math.cos(g.off * Math.PI * 2 + j * .62) * wdt * .5 : 0)));
       }
-      line(pts, .14, 1.1);
+      line(pts, .2, 1.1);
     }
     const spin = S.t * .05;                // 줄기: 띠가 감겨 오르는 3D 나선 + 묶음 철사 고리
-    for (let k = 0; k < 14; k++) {
-      const ph = k / 14 * Math.PI * 2, turns = k % 4 === 3 ? -.85 : 1.15 + (k % 3) * .12, amp = .9 + .08 * hs(k, 2), pts = [];
-      for (let i = 0; i <= 48; i++) { const u = i / 48, a = ph + u * turns * Math.PI * 2 + spin, c = trunkAxis(u), r = hwT(u) * amp; pts.push(P3(c[0] + Math.cos(a) * r, c[1], Math.sin(a) * r)); }
+    for (let k = 0; k < 6; k++) {          // 줄기 띠 6가닥
+      const ph = k / 6 * Math.PI * 2, turns = k === 5 ? -.85 : 1.15 + (k % 3) * .12, amp = .9 + .08 * hs(k, 2), pts = [];
+      for (let i = 0; i <= 36; i++) { const u = i / 36, a = ph + u * turns * Math.PI * 2 + spin, c = trunkAxis(u), r = hwT(u) * amp; pts.push(P3(c[0] + Math.cos(a) * r, c[1], Math.sin(a) * r)); }
       line(pts, .48, 1.8);
     }
-    for (const u of [.08, .13, .18, .3, .36, .55, .6, .65, .7]) { const c = trunkAxis(u), r = hwT(u) * 1.02, pts = []; for (let i = 0; i <= 28; i++) { const a = i / 28 * Math.PI * 2; pts.push(P3(c[0] + Math.cos(a) * r, c[1], Math.sin(a) * r)); } line(pts, .4, 1.2); }
+    for (const u of [.12, .36, .62]) { const c = trunkAxis(u), r = hwT(u) * 1.02, pts = []; for (let i = 0; i <= 24; i++) { const a = i / 24 * Math.PI * 2; pts.push(P3(c[0] + Math.cos(a) * r, c[1], Math.sin(a) * r)); } line(pts, .4, 1.2); }
     const bx = N[TRUNK[0]].x0;             // 뿌리 다리
-    for (let k = 0; k < 12; k++) {
-      const a = k / 12 * Math.PI * 2 + hs(k, 5) * .4, kn = 40 + hs(k, 6) * 70, rr = 90 + hs(k, 7) * 160, h = 18 + hs(k, 8) * 34, pts = [];
+    for (let k = 0; k < 6; k++) {          // 뿌리 다리 6개
+      const a = k / 6 * Math.PI * 2 + hs(k, 5) * .5, kn = 40 + hs(k, 6) * 70, rr = 90 + hs(k, 7) * 160, h = 18 + hs(k, 8) * 34, pts = [];
       for (let i = 0; i <= 12; i++) { const s = i / 12, q = 1 - s; const r = q * q * q * hwT(0) * .45 + 3 * q * q * s * kn + 3 * q * s * s * kn * 1.3 + s * s * s * rr; const y = q * q * q * (h + 30) + 3 * q * q * s * h * .6 + 3 * q * s * s * 4; pts.push(P3(bx + Math.cos(a) * r, GROUND - Math.max(0, y), Math.sin(a) * r)); }
       line(pts, .5, 2);
     }
-    for (const [rr, al] of [[120, .3], [260, .14], [520, .06]]) { const pts = []; for (let i = 0; i <= 48; i++) { const a = i / 48 * Math.PI * 2; pts.push(P3(bx + Math.cos(a) * rr, GROUND + 3, Math.sin(a) * rr)); } line(pts, al, 1.2); }
+    for (const [rr, al] of [[120, .28], [300, .1]]) { const pts = []; for (let i = 0; i <= 48; i++) { const a = i / 48 * Math.PI * 2; pts.push(P3(bx + Math.cos(a) * rr, GROUND + 3, Math.sin(a) * rr)); } line(pts, al, 1.2); }
     for (const r of ropes) { const n = N[r.node]; if (n) seg(P3(n.x1, n.y1, Z[r.node]), P3(r.pts[0].x, r.pts[0].y, Z[r.node]), .3, .9); }
     for (const b of birds) {                // 새: 작품과 같은 접힌 선
       const z = (hs(b.seed, 4) - .5) * 1400, left = Math.cos(b.heading) < 0, sx = (left ? -1 : 1) * 1.25, f = Math.sin(b.phase) * .5 + .5;
@@ -218,7 +220,7 @@
   }
 
   // ------------------------------------------------ 걸린 말: 실제 글자 (한 번 그린 글자 비트맵을 크기만 바꿔 찍음)
-  const GC = new Map(), GS = 96;
+  const GC = new Map(), GS = 72;
   function glyphImg(c, rgb) {
     const k = c + '|' + rgb; let g = GC.get(k);
     if (!g) { g = document.createElement('canvas'); g.width = g.height = GS; const x = g.getContext('2d'); x.font = `${GS * .78}px "Nanum Myeongjo", "AppleMyungjo", serif`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillStyle = `rgb(${rgb})`; x.fillText(c, GS / 2, GS / 2); GC.set(k, g); }
@@ -254,7 +256,14 @@
     const dt = Math.min(.05, (now - last) / 1000); last = now;
     if (!ready) return;
     clock += dt;
+    const t0 = performance.now();
     draw(dt);
+    const ms = performance.now() - t0;
+    QUAL.acc += ms; QUAL.n++;
+    if (QUAL.n >= 45) {                       // 약 0.75초마다 평균을 보고, 22ms를 넘으면 해상도를 한 단계 낮춤
+      if (QUAL.acc / QUAL.n > 22 && QUAL.level < QUAL.caps.length - 1) { QUAL.level++; resize(); }
+      QUAL.acc = 0; QUAL.n = 0;
+    }
   }
   function draw(dt) {
     simStep(dt);
@@ -279,6 +288,9 @@
   if (skip) skip.addEventListener('click', () => { clock = Math.max(clock, T_DIS1 + .2); });
   window.__landing = { seek: t => { clock = t; }, renderAt: t => { clock = t; draw(1 / 60); } };   // 점검용
   resize();
-  Promise.all(['40px "Nanum Myeongjo"', '16px "IBM Plex Mono"'].map(f => document.fonts.load(f, '말 걸다 -|/')).map(p => p.catch(() => {})))
+  // 웹폰트는 최대 1.2초만 기다림 (늦게 오면 글자 캐시를 비워 다시 그림)
+  const fontsReady = Promise.all(['40px "Nanum Myeongjo"', '16px "IBM Plex Mono"'].map(f => document.fonts.load(f, '말 걸다 -|/').catch(() => {})));
+  fontsReady.then(() => GC.clear());
+  Promise.race([fontsReady, new Promise(r => setTimeout(r, 1200))])
     .finally(() => { seedRopes(); ready = true; requestAnimationFrame(frame); });
 })();
