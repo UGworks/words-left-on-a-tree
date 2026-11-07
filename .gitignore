@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+
+# 대용량 미디어 원본 (로컬에만 둠)
+*.wav
+*.flac
+*.mov
+*.mp4
+!video/*.mp4
+# 루트의 mp3는 가시나무에_매달린_말들/ 안에 같은 파일이 있음
+/winter.mp3
+/wish.mp3
+
+# 발표 자료 (표지에 학번 등 개인 정보가 있음)
+*.pptx
+
+# Python 부산물
+__pycache__/
+.venv/
+*.log
+
+# TouchDesigner: 자동 백업과 개발용 브리지
+가시나무_TD/Backup/
+가시나무_TD/*.[0-9]*.toe
+가시나무_TD/td_log.txt
+가시나무_TD/td_cmd.py
+
+# 다른 작업의 테스트 폴더
+지은박사_TEST/
