@@ -1901,5 +1901,7 @@ if(CAMS.auto && location.protocol.startsWith('http') && /localhost|127\.0\.0\.1/
 Promise.all(['40px "Nanum Pen Script"','40px "Nanum Myeongjo"','40px "Gowun Batang"'].map(f=>document.fonts.load(f,'가나다마음').catch(()=>{})))
   .finally(()=>{ seedRopes(); requestAnimationFrame(frame); });
 </script>
+<!-- 3D 오프닝: 뿌리에서 오빗하며 줌아웃 (아스키 → 원래 화면). ?noopening 으로 끔 -->
+<script src="opening3d.js"></script>
 
 </body></html>

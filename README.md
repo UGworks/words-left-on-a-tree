@@ -21,13 +21,25 @@
 │  └─ img/                       작품 스틸 (작품을 실제로 실행해 캡처)
 ├─ 가시나무에_매달린_말들/         말을 걸어 두는 나무 (브라우저 작품)
 │  ├─ index.html                 작품 본체 (Canvas 2D · WebGL2 · Web Audio)
+│  ├─ opening3d.js               3D 오프닝: 뿌리에서 오빗하며 줌아웃 (아스키 → 원래 화면)
 │  ├─ wish.mp3 · winter.mp3      음악
 │  └─ vision/                    관객 감지 서버 (SAM 3 → SAM 2, WebSocket 8770)
 ├─ 가시나무_TD/                   같은 작품의 TouchDesigner 네이티브 버전
 ├─ FeedbackNoise/                Granite Resonance (오디오 반응 피드백·입자)
+├─ previz/opening/               오프닝 카메라웍 단독 프리비즈 (프레임 단위 렌더, 영상 추출용)
 ├─ video/                        FeedbackNoise의 대체 영상
-└─ board.html                    시안 보드 (작품 index.html과 같은 파일)
+└─ board.html                    시안 보드 (3D 오프닝을 붙이기 전의 작품 index.html)
 ```
+
+## 3D 오프닝
+
+작품(`가시나무에_매달린_말들/index.html`)을 열면 약 15초 동안 3D 오프닝이 먼저 재생됩니다.
+뿌리와 줄기 클로즈업에서 시작해 나무를 오빗으로 훑으며 줌아웃하고, 그동안 장면은 아스키로, 걸린 말은 실제 글자로 그립니다.
+정면 풀샷에 닿으면 글자 칸이 줄 단위로 흩어지며 원래 화면으로 넘어가고, 이후에는 원래 작품 그대로 돌아갑니다.
+
+- 작품의 시뮬레이션(나무, 말, 새, 전구)을 그대로 읽어 그리므로 나무 모양과 걸린 말이 실제 작품과 같습니다.
+- 끄기: 주소 뒤에 `?noopening` (예: `index.html?autostart&noopening`)
+- 다시 보기: 화면 아래 '오프닝 다시' 버튼
 
 ## 사이트 보기
 
