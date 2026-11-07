@@ -64,10 +64,10 @@ python3 -m http.server 8790 --bind 127.0.0.1
 
 1. GitHub에 저장소를 만들고 이 폴더를 push
 2. 저장소 Settings → Pages → Branch: `main` / 폴더: `/ (root)`
-3. 주소: `https://UGworks.github.io/<저장소이름>/landing/`
+3. 주소: `https://UGworks.github.io/<저장소이름>/` (루트에서 랜딩으로 넘어감)
 
 배포 전에 할 일:
-- 루트에 `index.html`이 없다. 루트 주소로 들어오면 `landing/`으로 보내는 한 줄짜리 `index.html`을 두면 주소가 깔끔해진다.
+- 루트 `index.html`이 `landing/`으로 바로 넘겨 준다. 공유 주소는 `https://UGworks.github.io/<저장소이름>/` 하나면 된다.
 - 모든 링크가 상대 경로라 `/<저장소이름>/` 아래에서도 그대로 동작한다(확인함).
 - 작품의 세 번째 곡(Saltwater Silence)은 wav 원본만 있고 저장소에 없다. 웹에서도 들리게 하려면 mp3로 변환해 `가시나무에_매달린_말들/saltwater.mp3`로 넣는다.
 - 대안: Cloudflare Pages나 Netlify에 폴더를 그대로 끌어다 놓아도 된다(GitHub 없이 바로 URL).
@@ -81,7 +81,7 @@ python3 -m http.server 8790 --bind 127.0.0.1
 ## 6. 다음 할 일
 
 - [ ] GitHub 저장소 연결 후 push, GitHub Pages 켜기
-- [ ] 루트 `index.html` → `landing/` 이동
+- [x] 루트 `index.html` → `landing/` 이동
 - [ ] `saltwater.mp3` 변환해 넣기(선택)
 - [ ] 공유용 미리보기 이미지(Open Graph `og:image`, `og:title`) 추가
 - [ ] 실제 모바일 기기에서 랜딩 오프닝 속도 확인(데스크톱 미리보기에서는 확인함)

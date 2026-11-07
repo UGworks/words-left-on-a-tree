@@ -16,6 +16,7 @@
 
 ```
 .
+├─ index.html                    루트 주소로 오면 landing/으로 넘김 (배포용)
 ├─ landing/                      작품 랜딩페이지: 3D 나무 오프닝 (아스키 → 가는 선)
 │  ├─ index.html
 │  ├─ sim.js                     작품 index.html에서 그대로 가져온 나무·말 사슬 코드 + 랜딩용 진행
