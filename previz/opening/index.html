@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>오프닝 프리비즈 — 말을 걸어 두는 나무</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Nanum+Myeongjo:wght@400;700&display=swap">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#050605;color:#bdb9ad;font:13px/1.4 "JetBrains Mono",ui-monospace,monospace;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:16px}
+  #stage{width:min(100%,calc((100vh - 90px)*16/9));aspect-ratio:16/9;height:auto;display:block;background:#0a0b0a;box-shadow:0 0 0 1px #1d1f1c}
+  .bar{display:flex;gap:14px;align-items:center;width:min(100%,calc((100vh - 90px)*16/9))}
+  .bar input{flex:1;accent-color:#a4e0a0}
+  .bar button{font:inherit;background:#1a1c19;color:#e6e3d8;border:1px solid #2c2f2a;border-radius:4px;padding:6px 12px;cursor:pointer}
+  #tc{min-width:64px;text-align:right;font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+  <canvas id="stage" aria-label="말을 걸어 두는 나무 오프닝 프리비즈: 뿌리에서 오빗하며 줌아웃하는 아스키 장면"></canvas>
+  <div class="bar">
+    <button id="play" type="button">일시정지</button>
+    <input id="scrub" type="range" min="0" value="0" aria-label="시간">
+    <span id="tc">0.00 s</span>
+  </div>
+  <script src="opening.js"></script>
+</body>
+</html>
