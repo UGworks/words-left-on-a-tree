@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>말을 걸어 두는 나무 — 이성훈</title>
+<meta name="description" content="지나가던 사람들이 잠시 멈춰 말을 걸어 두고 가는 나무. 예술공학 이성훈의 인터랙티브 미디어아트.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Nanum+Myeongjo:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ================================================ 히어로 -->
+<section class="hero" aria-label="소개">
+  <canvas id="dots" aria-hidden="true"></canvas>
+  <nav aria-label="주 메뉴">
+    <a class="brand" href="#top" aria-label="이성훈">
+      <svg width="16" height="18" viewBox="0 0 16 18" aria-hidden="true"><path fill="currentColor" d="M0 1h16v1.8H0zM2.6 2.8h1.5v9.6H2.6zM7.25 2.8h1.5V18h-1.5zM11.9 2.8h1.5v6.6h-1.5z"/></svg>
+      이성훈
+    </a>
+    <a class="link" href="#work">작품</a>
+    <a class="link" href="#process">과정</a>
+    <a class="link" href="#encounter">만남</a>
+    <a class="link" href="#install">설치</a>
+    <a class="link" href="#artist">작가</a>
+    <a class="pill" href="../가시나무에_매달린_말들/index.html" target="_blank" rel="noopener">작품 실행</a>
+  </nav>
+
+  <div class="copy" id="top">
+    <h1><span class="l1">말을 걸다,</span>그리고 걸어 두다.</h1>
+    <p>지나가던 사람들이 잠시 멈춰 말을 걸어 두고 가는 나무. 예술공학 이성훈의 인터랙티브 미디어아트.</p>
+    <div class="cta"><a href="#work">작품 보기</a></div>
+  </div>
+
+  <ul class="logos" aria-label="만든 도구">
+    <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 15c0-7 5-12 14-12-1 9-6 14-13 13l-1 2-2-1z"/></svg>TouchDesigner</li>
+    <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l8 4.5v9L10 19l-8-4.5v-9zM10 6l-4 2.3v4.4L10 15l4-2.3V8.3z"/></svg>WebGL2</li>
+    <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M1 5q4.5-3 9 0t9 0v3q-4.5 3-9 0t-9 0zm0 7q4.5-3 9 0t9 0v3q-4.5 3-9 0t-9 0z"/></svg>Web Audio</li>
+    <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1a9 9 0 110 18 9 9 0 010-18zm0 3a6 6 0 100 12 6 6 0 000-12zm0 3a3 3 0 110 6 3 3 0 010-6z"/></svg>SAM 3</li>
+    <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M1 17L7 6l3 5 3-7 6 13z"/></svg>Canvas 2D</li>
+    <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1l9 4-9 4-9-4zm-9 8l9 4 9-4v3l-9 4-9-4zm0 5l9 4 9-4v2l-9 4-9-4z"/></svg>Python</li>
+  </ul>
+</section>
+
+<main>
+<!-- ================================================ 작품 -->
+<section class="block" id="work">
+  <div class="wrap reveal">
+    <p class="eyebrow"><b>01</b> · Interactive Media Art · 2026</p>
+    <h2>말을 걸어 두는 나무<span class="en">Words Left on a Tree</span></h2>
+    <p class="lead">노래 〈가시나무〉를 듣다가 나무 한 그루가 떠올랐다. 지나가던 사람들이 잠깐 멈춰 서서 말을 걸어 두고 가는 나무였다.</p>
+    <p class="lead">고맙다는 말, 미안했다는 말, 오늘 본 노을 이야기 같은 것들이 그 가지에 걸린다. 모르는 사람의 말 옆에 내 말이 걸리면 다음에 온 사람은 둘을 나란히 읽게 된다.</p>
+  </div>
+
+  <div class="night stage reveal">
+    <figure>
+      <img src="img/tree-full.jpg" width="2400" height="597" alt="검은 화면 가운데 S자로 꼬여 오른 줄기와 버드나무처럼 늘어진 가지. 가지마다 세로로 쓴 한글 문장이 매달려 있고 금빛 전구와 붉은 열매가 드문드문 빛난다.">
+      <figcaption><span>전체 화면, 4 : 1</span><span>나무에는 늘 쉰 개의 말이 걸려 있다</span></figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap">
+    <div class="verb reveal" aria-label="걸다의 두 뜻">
+      <div>
+        <div class="w">걸다<sup>1</sup></div>
+        <p class="m">말을 걸다</p>
+        <p>누군가에게 먼저 말을 건네다. 관객은 화면 아래 상자에 하고 싶은 말을 적는다.</p>
+      </div>
+      <div>
+        <div class="w">걸다<sup>2</sup></div>
+        <p class="m">나무에 걸다</p>
+        <p>떨어지지 않게 어딘가에 매달아 두다. 새가 그 말을 물고 가 빈 가지에 걸어 둔다.</p>
+      </div>
+    </div>
+    <p class="lead reveal">말을 거는 일과 무언가를 걸어 두는 일. 우리말이 이 두 행동에 같은 동사를 쓴다는 데서 이 미디어아트를 기획했다. 처음 보는 사람과도 말 한마디를 건네면 사이가 생긴다. 그 말은 금방 흩어지기도 하지만 어딘가에 걸어 두면 다음 사람이 읽을 수 있게 남는다.</p>
+
+    <div class="quote reveal">
+      <q>퇴근길 버스에서 본 노을이 너무 예뻐서 혼자 보기 아까웠다</q>
+      <cite>나무에 걸린 말 가운데 하나</cite>
+    </div>
+
+    <div class="grid g4 reveal" style="margin-top:clamp(64px,8vw,110px)">
+      <div class="card"><p class="k">Branch</p><h3>가지</h3><p>말이 걸리는 자리다. 뿌리에서 갈라진 약 380가닥의 선이 가지 끝까지 이어진다.</p></div>
+      <div class="card"><p class="k">Words</p><h3>문장</h3><p>누군가 걸어 둔 말이다. 버드나무 잎처럼 가지 끝에서 아래로 늘어져 있다.</p></div>
+      <div class="card"><p class="k">Bird</p><h3>새</h3><p>관객이 쓴 말을 물고 빈 가지로 간다. 사람이 다가오면 그 곁으로 내려온다.</p></div>
+      <div class="card"><p class="k">Winter</p><h3>겨울</h3><p>가지 사이 작은 전구가 깜박이고 눈이 천천히 내린다. 트리라는 느낌만 살짝 남겼다.</p></div>
+    </div>
+  </div>
+
+  <div class="night stage reveal">
+    <div class="wrap">
+      <div class="duo">
+        <img src="img/tree-words.jpg" width="561" height="819" loading="lazy" alt="가지에서 늘어진 세로 문장들을 가까이 본 모습. 가까운 문장은 크고 밝고, 먼 문장은 작고 흐리다.">
+        <img src="img/tree-trunk.jpg" width="726" height="819" loading="lazy" alt="띠가 꼬여 올라가는 줄기와 그 주변에 걸린 문장들을 가까이 본 모습.">
+      </div>
+      <p style="margin-top:14px;font-size:13px;color:var(--night-mute)">가까운 문장은 크고 밝게, 먼 문장은 작고 흐리게 두어 세 겹의 깊이를 만들었다.</p>
+    </div>
+  </div>
+
+  <div class="wrap reveal">
+    <div class="btns">
+      <a class="btn solid" href="../가시나무에_매달린_말들/index.html" target="_blank" rel="noopener">작품 실행하기 ↗</a>
+      <a class="btn" href="#install">설치 방식 보기</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ 과정 -->
+<section class="block" id="process">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow"><b>02</b> · 나무의 수정 과정</p>
+      <h2>덜어내며 찾은 모습</h2>
+      <p class="lead">화면 비율은 처음부터 4 대 1로 두고, 고칠 때마다 붙잡은 질문을 하나씩 바꿔 갔다.</p>
+    </div>
+    <ol class="steps reveal">
+      <li><span class="num">01</span><h3>번들 트리</h3><p>수천 가닥의 선을 겹쳐 버드나무를 처음 그렸다.</p></li>
+      <li><span class="num">02</span><h3>형태 찾기</h3><p>그래프, 그물, 열린 가지를 놓고 견주어 보았다.</p></li>
+      <li><span class="num">03</span><h3>데이터 트리</h3><p>가닥마다 뿌리에서 잎 끝까지 길이 이어지게 했다.</p></li>
+      <li><span class="num">04</span><h3>음악</h3><p>나무는 그대로 두고 입자만 음악을 따라가게 했다.</p></li>
+      <li><span class="num">05</span><h3>관객</h3><p>사람이 들어오면 새가 한 마리씩 곁으로 온다.</p></li>
+      <li><span class="num">06</span><h3>겨울</h3><p>트리 느낌만 남기고 글이 가장 밝게 보이도록 정리했다.</p></li>
+    </ol>
+
+    <div class="grid g2" style="margin-top:clamp(64px,8vw,100px)">
+      <div class="reveal">
+        <h3>빼고 나서 남은 것</h3>
+        <table class="swap">
+          <thead><tr><th>빼낸 것</th><th></th><th>남긴 것</th></tr></thead>
+          <tbody>
+            <tr><td>가시나무에 매달린 말들</td><td class="arrow">→</td><td>말을 걸어 두는 나무</td></tr>
+            <tr><td>쓸쓸한 Saltwater Silence</td><td class="arrow">→</td><td>소원을 비는 듯한 곡, A Quiet Wish</td></tr>
+            <tr><td>음악에 맞춰 흔들리던 나무</td><td class="arrow">→</td><td>제자리에 가만히 서 있는 나무</td></tr>
+            <tr><td>손글씨체</td><td class="arrow">→</td><td>나눔명조</td></tr>
+            <tr><td>줄기를 휘감던 빛줄기와 꼭대기 별</td><td class="arrow">→</td><td>가지 사이 작은 전구와 내리는 눈</td></tr>
+            <tr><td>저절로 날아오던 문장</td><td class="arrow">→</td><td>관객이 직접 쓴 말만 걸린다</td></tr>
+          </tbody>
+        </table>
+        <p class="lead" style="font-size:16px">움직임은 새와 눈에 맡기고, 나무와 글은 제자리에 두기로 했다.</p>
+      </div>
+      <div class="reveal">
+        <h3>이름도 여러 번 바뀌었다</h3>
+        <div class="titles"><span>가시나무에 매달린 말들</span><span>켜 · Layers</span><span>말의 나이테</span><span class="now">말을 걸어 두는 나무</span></div>
+        <p class="lead" style="font-size:16px">곧게 선 기둥이 밋밋해 보여서, 철사와 리본으로 만든 조각들을 참고해 여러 가닥의 띠가 S자로 꼬여 오르는 줄기로 다시 세웠다.</p>
+        <h3 style="margin-top:40px">걸린 말의 수</h3>
+        <p class="muted" style="margin-top:6px;font-size:15px;line-height:1.6">25개부터 150개까지 걸어 보고, 문장이 읽히면서도 나무가 보이는 수를 골랐다.</p>
+        <div class="counts">
+          <div><b>25</b><p>문장은 잘 읽히지만 가지가 비어 보인다</p></div>
+          <div class="on"><b>50</b><p>최종. 가지마다 말이 드리워 잎처럼 보인다</p></div>
+          <div><b>100</b><p>커튼처럼 빽빽해져 가지가 가려진다</p></div>
+          <div><b>150</b><p>나무보다 글자의 벽에 가깝다</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ 만남 -->
+<section class="block" id="encounter">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow"><b>03</b> · 관객과 만나는 방식</p>
+      <h2>다가와서 말을 걸면,<br>그 말이 가지에 걸려 다음 사람을 기다린다</h2>
+    </div>
+    <div class="grid g4 reveal" style="margin-top:48px">
+      <div class="card"><p class="k">01</p><h3>기다림</h3><p>사람이 없을 때 나무는 바람에 조금씩 흔들리고 새들이 가지 사이를 오간다. 카메라는 움직이지 않고 언제나 나무 전체를 보여 준다.</p></div>
+      <div class="card"><p class="k">02</p><h3>다가옴</h3><p>카메라가 프레임 안의 사람 수와 화면 속 키를 읽는다. 키가 크게 잡힐수록 가까이 온 것으로 보고, 그 사람과 짝이 된 새가 다가와 빛난다.</p></div>
+      <div class="card"><p class="k">03</p><h3>말 걸기</h3><p>화면 아래 상자에 말을 쓰고 Enter를 누르면 상자 안의 새가 그 말을 물고 나무로 날아간다. 가지를 한 바퀴 돌고 내려앉으면 글자가 한 자씩 적힌다.</p></div>
+      <div class="card"><p class="k">04</p><h3>곁</h3><p>걸린 말은 그 자리에서 다음 사람을 기다린다. 쉰 개를 넘으면 가장 오래된 말 하나가 천천히 떨어진다.</p></div>
+    </div>
+    <p class="lead reveal muted" style="font-size:15px">영상은 저장하지 않고 사람 수와 위치 같은 감지값만 쓴다.</p>
+  </div>
+</section>
+
+<!-- ================================================ 설치 -->
+<section class="block" id="install">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow"><b>04</b> · 놓일 자리</p>
+      <h2>벽 하나, 프로젝터 한 대, 키보드 하나</h2>
+    </div>
+    <div class="rig reveal">
+      <div class="screen" role="img" aria-label="16 대 9 화면의 위쪽 4 대 1에 나무, 아래쪽에 말을 쓰는 상자가 있는 배치도">
+        <div class="tree"><span>1920 × 480 · 나무</span></div>
+        <div class="type"><i></i><span>타이핑 화면</span></div>
+      </div>
+      <ul>
+        <li><b>투사, 16 대 9 안의 4 대 1</b><span>프로젝터 한 대가 비추는 1920 × 1080 화면에서 위쪽 1920 × 480은 나무가 쓰고, 아래쪽에는 말을 쓰는 상자를 둔다.</span></li>
+        <li><b>더 크게 보일 때</b><span>벽이 넓다면 프로젝터 두 대를 이어 3840 × 960으로 나무만 비추고, 타이핑 화면은 작은 모니터로 따로 뺄 수 있다.</span></li>
+        <li><b>키보드와 카메라</b><span>키보드는 화면 앞 받침대에 둔다. 관객을 보는 카메라는 캡처보드에 연결해 쓰고, 여의치 않으면 웹캠으로 바꾼다.</span></li>
+      </ul>
+    </div>
+    <div class="reveal" style="margin-top:56px">
+      <h3>만든 방식</h3>
+      <p class="muted" style="margin-top:6px;font-size:15px;line-height:1.7;max-width:680px">브라우저에서 돌아가는 작품으로 만들고, 같은 장면을 TouchDesigner 네트워크로도 다시 지었다. 관객 감지는 별도의 감지 서버가 SAM 3(없으면 SAM 2)로 사람을 나눠 사람 수와 위치만 보낸다.</p>
+      <div class="stack"><span>Canvas 2D · 나무와 문장</span><span>WebGL2 · 입자 3.7만 개</span><span>Web Audio · 대역별 반응</span><span>SAM 3 / SAM 2 · 관객 감지</span><span>WebSocket</span><span>TouchDesigner · 네이티브 버전</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ 첫 실험 -->
+<section class="block" id="granite">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow"><b>05</b> · 먼저 만든 실험 · 2026</p>
+      <h2>Granite Resonance<span class="en">FeedbackNoise</span></h2>
+    </div>
+    <div class="work2 reveal">
+      <div class="shot"><img src="img/granite.jpg" width="1600" height="1000" alt="화강암 질감의 회색 바탕에서 두 실루엣이 서로를 향해 팔을 뻗는다. 몇 초 전 자세가 잔상으로 겹치고 윤곽은 빛나는 입자로 흩어진다." loading="lazy"></div>
+      <div>
+        <p class="lead" style="margin-top:0">카메라에 비친 몸이 음악에 맞춰 번지고 흩어지게 만든 첫 실험. 화면이 화면을 다시 비추며 겹겹이 쌓이고, 몇 초 전의 내 모습이 지금의 나 위로 천천히 겹쳐 온다. 관객의 윤곽은 바람에 날리듯 입자로 흩어진다.</p>
+        <ul class="bands">
+          <li><span>저음</span>줌 · 왜곡 · 흩날림</li>
+          <li><span>중음</span>회전 · 흐름</li>
+          <li><span>고음</span>노이즈 · 떨림</li>
+          <li><span>킥</span>터짐 · 되감기</li>
+        </ul>
+        <p class="muted" style="margin-top:18px;font-size:15px;line-height:1.7">여기서 입자만 가져와 〈말을 걸어 두는 나무〉의 배경으로 깔았다.</p>
+        <div class="btns"><a class="btn" href="../FeedbackNoise/index.html" target="_blank" rel="noopener">실험 실행하기 ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ 작가 -->
+<section class="block" id="artist">
+  <div class="wrap">
+    <p class="eyebrow reveal"><b>06</b> · 작가</p>
+    <div class="artist reveal">
+      <div>
+        <p class="name">이성훈</p>
+        <p class="aff">첨단영상대학원 예술공학<br>Department of Imaging Science and Arts</p>
+        <dl>
+          <dt>작업</dt><dd>인터랙티브 미디어아트, 실시간 그래픽</dd>
+          <dt>도구</dt><dd>웹 그래픽(Canvas · WebGL), TouchDesigner, 생성형 AI, 컴퓨터 비전</dd>
+          <dt>수업</dt><dd>생성형 AI 디지털영상 · 2026</dd>
+        </dl>
+      </div>
+      <div>
+        <p class="statement">오늘 건넨 말 한마디가<br>누군가의 말 곁에 걸린다.</p>
+        <p class="lead">말과 관계를 붙잡고, 관객이 직접 참여하는 화면을 코드로 짓는다. 상징을 덧붙이기보다 화면 안에서 실제로 일어나는 일을 적고, 여러 번 덜어내며 작품의 모습을 찾아간다.</p>
+        <p class="lead muted" style="font-size:15px">멀리서는 나무 한 그루로, 가까이서는 누군가의 말로 보였으면 한다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 이성훈</span>
+    <span>말을 걸어 두는 나무 · Words Left on a Tree</span>
+  </div>
+</footer>
+
+<script src="js/hands.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
