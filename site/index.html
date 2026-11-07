@@ -193,6 +193,46 @@
         <li><b>키보드와 카메라</b><span>키보드는 화면 앞 낮은 받침대 위에 둔다. 카메라는 화면 아래 가운데에서 사람의 수와 자리를 읽는다.</span></li>
       </ul>
     </div>
+    <figure class="plan reveal">
+      <figcaption><h3>더 넓은 벽에 설 때</h3><p>천장 프로젝터 두 대가 3840 × 960을 나눠 비춘다. 카메라는 화면 아래 가운데에서 다가오는 사람을 읽는다.</p></figcaption>
+      <div class="plan-scroll">
+      <svg viewBox="0 0 1314 860" role="img" aria-label="설치 배치도. 정면: 프로젝터 A와 B가 각각 1920 × 960을 비춰 3840 × 960 화면을 이루고 가운데는 엣지 블렌딩으로 겹친다. 화면 하단 중앙에 카메라, 양옆에 스피커. 평면: 천장 프로젝터 두 대가 스크린 벽을 비추고 벽 아래 가운데 카메라가 앞쪽 부채꼴을 읽는다. 멀리서 인식이 시작되고 바로 앞에 오면 새가 다가와 빛난다.">
+        <g class="lb"><text x="52" y="64">FRONT · 정면</text><text x="52" y="484">TOP · 평면</text></g>
+        <!-- 정면 -->
+        <text class="lf" x="651" y="82" text-anchor="middle">엣지 블렌딩 (선택)</text>
+        <rect x="202" y="102" width="900" height="200" fill="#151614"/>
+        <rect x="624" y="104" width="55" height="196" fill="#232822"/>
+        <line x1="651.5" y1="104" x2="651.5" y2="300" class="dash"/>
+        <rect x="202" y="102" width="900" height="200" fill="none" stroke="#e6e3d8" stroke-width="2.5"/>
+        <g class="ink" text-anchor="middle"><text x="427" y="198">프로젝터 A</text><text x="427" y="220">1920 × 960</text><text x="877" y="198">프로젝터 B</text><text x="877" y="220">1920 × 960</text></g>
+        <g class="arr"><path d="M164 110V295M157 121l7-11 7 11M157 284l7 11 7-11"/><path d="M210 330H1094M221 323l-11 7 11 7M1083 323l11 7-11 7"/></g>
+        <g class="lb" text-anchor="end"><text x="145" y="199">960 px</text><text x="145" y="218">· 1</text></g>
+        <text class="lb" x="427" y="357" text-anchor="middle">3840 px · 4</text>
+        <rect x="631" y="347" width="41" height="22" fill="#a4e0a0"/>
+        <text class="lf" x="684" y="364">카메라 · 화면 하단 중앙</text>
+        <g class="spk"><rect x="98" y="340" width="33" height="74"/><rect x="1173" y="340" width="33" height="74"/></g>
+        <g class="lb" text-anchor="middle"><text x="114" y="326">SPK</text><text x="1189" y="326">SPK</text></g>
+        <line x1="76" y1="414.5" x2="1228" y2="414.5" stroke="#3a3d37" stroke-width="2"/>
+        <!-- 평면 -->
+        <path d="M202 517L640 517L427 720Z" fill="#e6e3d8" opacity=".045"/>
+        <path d="M662 517L1102 517L876 720Z" fill="#e6e3d8" opacity=".045"/>
+        <clipPath id="planWedge"><path d="M651 537L495.7 743.0A258 258 0 0 0 806.3 743.0Z"/></clipPath>
+        <path d="M651 537L495.7 743.0A258 258 0 0 0 806.3 743.0Z" fill="#a4e0a0" opacity=".07"/>
+        <path id="planRing" d="" fill="none" stroke="#a4e0a0" stroke-width="1.4" opacity="0" clip-path="url(#planWedge)"/>
+        <line x1="200" y1="515" x2="1104" y2="515" stroke="#e6e3d8" stroke-width="4"/>
+        <text class="lb" x="1120" y="520">스크린 벽</text>
+        <rect x="637" y="518" width="29" height="19" fill="#a4e0a0"/>
+        <path id="planNear" d="M591.0 619.5A102 102 0 0 0 711.0 619.5" fill="none" stroke="#a4e0a0" stroke-width="2.5" opacity=".55"/>
+        <path id="planFar" d="M506.6 728.7A240 240 0 0 0 795.4 728.7" fill="none" stroke="#a4e0a0" stroke-width="1.6" stroke-dasharray="4 4" opacity=".55"/>
+        <text class="lf" x="733" y="636">바로 앞 · 새가 다가와 빛남</text>
+        <text class="lf" x="651" y="818" text-anchor="middle">멀리 · 인식 시작</text>
+        <g fill="#e6e3d8"><rect x="396" y="720" width="62" height="27"/><rect x="845" y="720" width="62" height="27"/></g>
+        <g class="lb" text-anchor="middle"><text x="427" y="789">천장 프로젝터 A</text><text x="876" y="789">천장 프로젝터 B</text></g>
+        <g id="planVisitor" opacity="0"><circle r="16" fill="#e6e3d8" opacity=".08"/><circle r="6.5" fill="#e6e3d8"/></g>
+        <g id="planBird" opacity="0" fill="none" stroke="#e6e3d8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle id="planGlow" r="26" fill="#f6d696" stroke="none" opacity="0"/><path d="M-16 5L10-3L17-2M-16 5L-7 1.5"/><path id="planWing" d="M-3 0L-10-18L5-2"/></g>
+      </svg>
+      </div>
+    </figure>
     <div class="reveal" style="margin-top:56px">
       <h3>만든 방식</h3>
       <p class="muted" style="margin-top:6px;font-size:15px;line-height:1.7;max-width:680px">브라우저에서 돌아가는 작품으로 만들었고 같은 나무를 TouchDesigner로도 다시 지었다. 사람을 알아보는 일은 따로 둔 감지 서버가 맡는다.</p>
@@ -257,6 +297,7 @@
 </footer>
 
 <script src="js/birds.js"></script>
+<script src="js/plan.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
