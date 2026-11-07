@@ -24,7 +24,8 @@ img{display:block;max-width:100%}
 .hero nav,.hero .copy,.hero .logos{z-index:3}
 
 nav{position:relative;display:flex;justify-content:center;align-items:center;gap:clamp(18px,2.6vw,40px);padding-top:36px;font-size:13.5px}
-.brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;letter-spacing:-.01em;margin-right:10px;text-decoration:none;color:var(--ink)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:-.01em;margin-right:10px;text-decoration:none;color:var(--ink)}
+.brand .avatar{width:28px;height:28px;border-radius:50%;display:block;flex:none;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
 nav a.link{color:#3a3a3a;text-decoration:none;transition:color .2s}
 nav a.link:hover{color:#000}
 .pill{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;padding:10px 21px;border-radius:999px;font-weight:500;margin-left:10px;transition:transform .25s}
