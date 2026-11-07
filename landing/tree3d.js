@@ -286,7 +286,9 @@
   window.addEventListener('resize', resize);
   window.addEventListener('pointermove', e => { mouse.x = e.clientX / innerWidth * 2 - 1; mouse.y = e.clientY / innerHeight * 2 - 1; });
   if (skip) skip.addEventListener('click', () => { clock = Math.max(clock, T_DIS1 + .2); });
-  window.__landing = { seek: t => { clock = t; }, renderAt: t => { clock = t; draw(1 / 60); } };   // 점검용
+  // 처음 장면부터 다시: 줄기 가까이에서 나무를 돌며 멀어지는 오프닝으로 돌아감 (이름·프로필을 누를 때)
+  function restart() { clock = REDUCE ? T_DIS1 + 1 : 0; copyShown = REDUCE ? copyShown : false; if (!REDUCE) document.body.classList.remove('settled'); }
+  window.__landing = { restart, seek: t => { clock = t; }, renderAt: t => { clock = t; draw(1 / 60); } };   // seek·renderAt은 점검용
   resize();
   // 웹폰트는 최대 1.2초만 기다림 (늦게 오면 글자 캐시를 비워 다시 그림)
   const fontsReady = Promise.all(['40px "Noto Serif KR"', '16px "IBM Plex Mono"'].map(f => document.fonts.load(f, '말 걸다 -|/').catch(() => {})));

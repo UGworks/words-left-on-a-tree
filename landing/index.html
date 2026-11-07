@@ -74,7 +74,7 @@
   <canvas id="tree" aria-label="버드나무처럼 가지가 늘어진 나무에 사람들이 남긴 문장이 세로로 매달려 흔들리는 3D 장면. 처음에는 줄기 가까이에서 시작해 나무를 돌며 멀어진다."></canvas>
 
   <header class="nav">
-    <a class="brand" href="./" aria-label="이성훈">
+    <a class="brand" href="./" aria-label="이성훈 — 처음 장면으로">
       <img class="avatar" src="../site/img/avatar.png" width="28" height="28" alt="">
       이성훈
     </a>
@@ -117,6 +117,11 @@
     document.addEventListener('fullscreenchange', () => { fsBtn.textContent = document.fullscreenElement ? '창으로' : '전체화면'; });
     addEventListener('keydown', e => { if ((e.key === 'f' || e.key === 'F') && document.activeElement?.tagName !== 'INPUT') toggleFs(); });
     if (!document.documentElement.requestFullscreen) fsBtn.hidden = true;
+    // 이름·프로필을 누르면 페이지를 다시 불러오지 않고 오프닝 첫 장면부터 다시
+    document.querySelector('.brand').addEventListener('click', e => {
+      if (!window.__landing?.restart || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault(); document.activeElement?.blur(); window.__landing.restart();
+    });
     document.getElementById('hang').addEventListener('submit', e => {
       e.preventDefault(); const i = document.getElementById('hangIn');
       if (hangWord(i.value)) i.value = '';
