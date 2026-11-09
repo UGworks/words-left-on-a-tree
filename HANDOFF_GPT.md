@@ -72,7 +72,7 @@ Workers & Pages → Create → Pages → Upload assets → 폴더 업로드. 빌
 - 서버나 WebSocket 백엔드 만들기 (아래 4번 참고)
 - 분석·추적 스크립트, 광고, 쿠키 배너 추가
 - 발표 자료(`*.pptx`)나 원본 오디오(`*.wav`)를 구해서 올리기: 개인 정보가 있거나 용량이 커서 일부러 뺀 것이다
-- 공개 화면에 학번 등 개인 정보 넣기 (연락처는 이미 들어 있는 이메일 하나뿐)
+- 공개 화면에 개인 정보 넣기 (학번, 이메일·전화 같은 연락처, 다른 사람의 이름, 컴퓨터 폴더 경로)
 - `robots.txt`, `_headers`, 각 페이지의 `<meta name="robots" content="noindex, ...">` 지우기. 사이트맵 만들기, 검색엔진(Google Search Console 등)에 등록하기
 
 ## 4. 카메라와 WebSocket에 대해

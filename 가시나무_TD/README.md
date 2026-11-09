@@ -11,7 +11,7 @@
 - **다른 프로젝트에 넣기**: `gasinamu.tox`를 네트워크에 끌어다 놓기. 이 폴더의 `gsn_sim.py`, `gsn_td.py`를 읽으므로 폴더째 함께 두세요.
 - **다시 만들기**: Textport(Dialogs › Textport and DATs)에서
   ```
-  import glob; exec(open(glob.glob('~/Desktop/*/*/*_TD/build_gasinamu.py')[0], encoding='utf-8').read())
+  import glob, os; exec(open(glob.glob(os.path.expanduser('~/Desktop/*/*/*_TD/build_gasinamu.py'))[0], encoding='utf-8').read())
   ```
 - `가시나무.숫자.toe`는 TouchDesigner가 저장할 때 남기는 이전 버전 백업입니다.
 
